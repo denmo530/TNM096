@@ -19,12 +19,6 @@ class Node:
                     return i, j
                 
     def copy(self, puzzle):
-        # temp = []
-        # for i in puzzle:
-        #     x = []
-        #     for j in i:
-        #         x.append(j)
-        #     temp.append(x)
         temp = copy.deepcopy(puzzle)
         return temp
                 
@@ -103,35 +97,9 @@ class Puzzle:
                 i.fValue = self.f_func(i, goal_state)
                 heapq.heappush(self.open, i)
             self.closed.add(current)
-        # print("Enter a start state matrix (empty space: 0): ")
-        # start_state = self.read_input()
-        # print("Enter a goal state matrix (empty space: 0): ")
-        # goal_state = self.read_input()
 
-        # start = Node(start_state, 0, 0)
-        # start.fValue = self.f_func(start, goal_state)
-        # self.open.append(start)
-        # print("\n\n")
-        
-        # while True:
-        #     current = self.open[0]
-        #     print("")
-        #     print("  | ")
-        #     print("  | ")
-        #     print(" \\\'/ \n")
-        #     for i in current.data:
-        #         for j in i: 
-        #             print(j, end=" ")
-        #         print("")
-        #     if self.h_func(current.data, goal_state) == 0:
-        #         break
-        #     for i in current.generate_child():
-        #         i.fValue = self.f_func(i, goal_state)
-        #         self.open.append(i)
-        #     self.closed.add(current)
-        #     del self.open[0]
-
-        #     self.open.sort(key=lambda x:x.fValue, reverse=False)
+        return current.depth
 
 puz = Puzzle(3)
-puz.solve()
+cost = puz.solve()
+print(f"\n\nSolution found in ({cost}) moves")
